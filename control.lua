@@ -24,16 +24,16 @@ function debug(str, statement)
 	end
 	if log_everything then log(str, statement) end
 end
-log_everything = true -- keep this true all times! only disable if the game lags. the info it generates is needed by the DyTech Team to debug your savegame if an bug or error happens!
-function log(str, statement)
-local seconds = math.floor(game.tick/60)
-local minutes = math.floor(seconds/60)
-local hours = math.floor(minutes/60)
-	if not global.Log then global.Log = {} end
-	if not statement then
-		global.Log[hours..":"..(minutes-(hours*60))..":"..(seconds-(minutes*60))] = str
-	end
-end
+-- log_everything = true -- keep this true all times! only disable if the game lags. the info it generates is needed by the DyTech Team to debug your savegame if an bug or error happens!
+-- function log(str, statement)
+-- local seconds = math.floor(game.tick/60)
+-- local minutes = math.floor(seconds/60)
+-- local hours = math.floor(minutes/60)
+	-- if not global.Log then global.Log = {} end
+	-- if not statement then
+		-- global.Log[hours..":"..(minutes-(hours*60))..":"..(seconds-(minutes*60))] = str
+	-- end
+-- end
 
 function PlayerPrint(message)
 	if global.Messages then
@@ -362,27 +362,27 @@ remote.add_interface("DyTech-Dynamics",
 		global.ResearchSystem.science = global.ResearchSystem.science + 100000
 	end,
 	
-	DataDumpDatabase = function()
-		global.DatabaseNames = {} 
-		global.DatabaseNumbers = {}
-		for RecipeName, info in pairs(RSDatabase.ItemUnlock) do
-		local data = RSDatabase.ItemUnlock[RecipeName]
-			table.insert(global.DatabaseNames,RecipeName)
-			table.insert(global.DatabaseNumbers,data.Points)
-		end
-		game.makefile("DataDump/Database-Base-Names.xls", serpent.block(global.DatabaseNames))
-		game.makefile("DataDump/Database-Base-Numbers.xls", serpent.block(global.DatabaseNumbers))
-	end,
+	-- DataDumpDatabase = function()
+		-- global.DatabaseNames = {} 
+		-- global.DatabaseNumbers = {}
+		-- for RecipeName, info in pairs(RSDatabase.ItemUnlock) do
+		-- local data = RSDatabase.ItemUnlock[RecipeName]
+			-- table.insert(global.DatabaseNames,RecipeName)
+			-- table.insert(global.DatabaseNumbers,data.Points)
+		-- end
+		-- game.makefile("DataDump/Database-Base-Names.xls", serpent.block(global.DatabaseNames))
+		-- game.makefile("DataDump/Database-Base-Numbers.xls", serpent.block(global.DatabaseNumbers))
+	-- end,
 	
-	DataDump = function()
-		game.makefile("DyTech/DataDump/Dynamics-ResearchSystem.txt", serpent.block(global.ResearchSystem))
-		game.makefile("DyTech/DataDump/Dynamics-Collectors.txt", serpent.block(global.Collectors))
-		game.makefile("DyTech/DataDump/Dynamics-Technology.txt", serpent.block(global.Technology))
-		game.makefile("DyTech/DataDump/Dynamics-AutoResearcher.txt", serpent.block(global.AutoResearcher))
-		game.makefile("DyTech/DataDump/Dynamics-Auto_Researcher.txt", serpent.block(global.Auto_Researcher))
-		game.makefile("DyTech/Log/Dynamics.txt", serpent.block(global.Log))
-		game.makefile("DyTech/Config/Dynamics.txt", serpent.block(Config))
-	end,
+	-- DataDump = function()
+		-- game.makefile("DyTech/DataDump/Dynamics-ResearchSystem.txt", serpent.block(global.ResearchSystem))
+		-- game.makefile("DyTech/DataDump/Dynamics-Collectors.txt", serpent.block(global.Collectors))
+		-- game.makefile("DyTech/DataDump/Dynamics-Technology.txt", serpent.block(global.Technology))
+		-- game.makefile("DyTech/DataDump/Dynamics-AutoResearcher.txt", serpent.block(global.AutoResearcher))
+		-- game.makefile("DyTech/DataDump/Dynamics-Auto_Researcher.txt", serpent.block(global.Auto_Researcher))
+		-- game.makefile("DyTech/Log/Dynamics.txt", serpent.block(global.Log))
+		-- game.makefile("DyTech/Config/Dynamics.txt", serpent.block(Config))
+	-- end,
 	
 	IncreaseDynamicPower = function()	
 		global.Dynamic_Power.Power = global.Dynamic_Power.Power + (1000*1000*10)
